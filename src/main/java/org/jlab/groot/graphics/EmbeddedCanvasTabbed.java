@@ -51,6 +51,17 @@ public class EmbeddedCanvasTabbed extends JPanel implements ActionListener {
         addCanvas();
     }
     
+    public EmbeddedCanvasTabbed(boolean isStatic){
+        super();
+        this.setLayout(new BorderLayout());
+        this.setMinimumSize(new Dimension(200,200));
+        this.setSize(400, 500);
+        this.initUI();
+        if(isStatic==false){
+            this.initBottomBar();
+        }
+    }
+    
     public EmbeddedCanvasTabbed(String... canvases){
         super();
         this.setLayout(new BorderLayout());
@@ -182,8 +193,8 @@ public class EmbeddedCanvasTabbed extends JPanel implements ActionListener {
     
     public static void main(String[] args){
         JFrame frame = new JFrame();
-        //EmbeddedCanvasTabbed canvasTab = new EmbeddedCanvasTabbed("TDC","ADC","VALUES");
-        EmbeddedCanvasTabbed canvasTab = new EmbeddedCanvasTabbed();
+        EmbeddedCanvasTabbed canvasTab = new EmbeddedCanvasTabbed("TDC","ADC","VALUES");
+        //EmbeddedCanvasTabbed canvasTab = new EmbeddedCanvasTabbed();
         frame.add(canvasTab);
         frame.pack();
         frame.setMinimumSize(new Dimension(300,300));

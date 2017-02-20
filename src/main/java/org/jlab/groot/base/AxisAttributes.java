@@ -223,7 +223,9 @@ public class AxisAttributes implements Cloneable {
 	}
 	@Override
 	public AxisAttributes clone() throws CloneNotSupportedException {
-		return (AxisAttributes) super.clone();
+			AxisAttributes copy = (AxisAttributes) super.clone();
+			copy.range = (Dimension1D) range.clone();
+		return  copy;
 	}
 
 	public void setLabelFontName(String fn) {
@@ -243,9 +245,11 @@ public class AxisAttributes implements Cloneable {
 	}
 	public void setAxisMinimum(double min) {
 		this.axisMinimum = min;
+		this.range.setMinMax(this.axisMinimum, this.range.getMax());
 	}
 	public void setAxisMaximum(double max) {
 		this.axisMaximum = max;
+		this.range.setMinMax(this.range.getMin(), this.axisMaximum);
 	}
 	public void setAxisGrid(boolean grid) {
 		this.axisGrid = grid;
