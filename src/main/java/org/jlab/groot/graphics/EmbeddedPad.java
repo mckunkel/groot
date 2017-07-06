@@ -382,7 +382,8 @@ public class EmbeddedPad {
     public int getHeight(){return (int)(padDimensions.getDimension(1).getMax() -  padDimensions.getDimension(1).getMin());}
 
     public void draw(IDataSet ds, String options){
-        if(options.contains("same")==false){
+        ds.getAttributes().setDrawOptions(options);
+    	if(options.contains("same")==false){
             this.datasetPlotters.clear();
         }
         if(datasetPlotters.isEmpty()){
@@ -407,9 +408,8 @@ public class EmbeddedPad {
         if(ds instanceof H2F){
             axisFrame.getAxisZ().getAttributes().setShowAxis(true);
             this.addPlotter(new Histogram2DPlotter(ds));
-        }else{
-            axisFrame.getAxisZ().getAttributes().setShowAxis(false);
         }
+        
         if(ds instanceof GraphErrors){
             this.addPlotter(new GraphErrorsPlotter(ds));
             GraphErrors gr = (GraphErrors) ds;
